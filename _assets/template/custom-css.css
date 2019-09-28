@@ -1,0 +1,20 @@
+footer {
+  display: block;
+  position: absolute;
+  bottom: 10px;
+  margin-left: 20px;
+  z-index: 20;
+  color: #ccc; 
+  font-family: "Source Sans Pro, Helvetica, sans-serif"
+}
+
+code {
+  background-color: #ccc;
+  font-weight:bold;
+  border-radius: 5px;
+  padding: 0 7px 2px;
+  border: 1px solid rgba(255,255,255,.4);
+  background: rgba(63,63,63,.8);
+  font-size: .8em;
+#  white-space: nowrap;
+}
