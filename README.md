@@ -11,14 +11,14 @@ Afficher les slides
 ---
 
 ```shell script
-./node_modules/reveal-md/bin/reveal-md.js ./content.md  -w --scripts assets/asciinema-2.6.1/asciinema-player.js --css assets/asciinema-2.6.1/asciinema-player.css  --title "Atelier Paris Web 2019 - N'ayez plus peur de votre terminal !" --template template/custom-reveal.html --css template/custom-css.css 
+$ make start
 ```
 
 Générer les slides
 ---
 
 ```
- ./node_modules/reveal-md/bin/reveal-md.js ./content.md  --scripts assets/asciinema-2.6.1/asciinema-player.js --css assets/asciinema-2.6.1/asciinema-player.css  --title "Atelier Paris Web 2019 - N'ayez plus peur de votre terminal !" --template template/custom-reveal.html --css template/custom-css.css --static tmp --static-dirs data
+$ make build-static
 ``` 
 
 
@@ -42,5 +42,4 @@ TODO
 - [ ] figlet pour afficher des messages
 - [ ] sauvegarder les commandes réalisés : https://tutorialinux.com/how-to-record-command-line-sessions/
 - [ ] mdp pour faire les slides
-- [ ] 
 

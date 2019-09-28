@@ -361,10 +361,22 @@ note:
 
 ---
 
-## Copier/Coller depuis le terminal
+## Copier/Coller: sélection avec la souris
 
-  * `CTRL + SHIFT + C/V`: copier/coller
-  * tmux show-buffer | pbcopy
+
+ `CTRL + SHIFT + C/V`
+  
+---
+## Copier/Coller: depuis un script
+  
+`pbcopy` (Mac) `xclip` (Linux)
+
+`alias pbcopy='xclip -selection clipboard'`
+`alias pbpaste='xclip -selection clipboard -o'`
+
+Exemple:
+
+`$ otp arteext |pbcopy` : permet de coller le presse papier le résultat de otp arteext.
   
 
 
@@ -458,6 +470,35 @@ set -g base-index 1
 # usage: "SHIFT+arrow" (without prefix key)
 bind -n S-Left  previous-window
 bind -n S-Right next-window
+```
+
+---
+
+## tmux: copier-coller
+
+* `CTRL+b [`: activation du visual mode
+* `v`: pour sélectionner le texte
+* `y`: pour copier la sélection
+* `CTRL+b P`: pour coller
+
+```
+set-window-option -g mode-keys vi
+bind P paste-buffer
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -selection clipboard -i"
+bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
+```
+---
+
+## tmux: interaction avec vim
+
+`sudo apt install vim-gnome`
+
+```
+" Make vim use the system clipboard:
+set clipboard^=unnamed,unnamedplus
+" Prevent vim from clearing system clipboard buffer
+autocmd VimLeave * call system("xsel -ib", getreg('+'))
 ```
 
 ---

@@ -313,10 +313,20 @@ $ sudo apt install fzf
 <li><code>CTRL + C</code>: A utiliser quand vous êtes coincés, <code>vim</code> est un contre-exemple</li>
 </ul>
 </aside></script></section><section  data-markdown><script type="text/template">
-## Copier/Coller depuis le terminal
+## Copier/Coller: sélection avec la souris
 
-  * `CTRL + SHIFT + C/V`: copier/coller
-  * tmux show-buffer | pbcopy
+
+ `CTRL + SHIFT + C/V`
+  </script></section><section  data-markdown><script type="text/template">## Copier/Coller: depuis un script
+  
+`pbcopy` (Mac) `xclip` (Linux)
+
+`alias pbcopy='xclip -selection clipboard'`
+`alias pbpaste='xclip -selection clipboard -o'`
+
+Exemple:
+
+`$ otp arteext |pbcopy` : permet de coller le presse papier le résultat de otp arteext.
   
 
 
@@ -398,6 +408,31 @@ set -g base-index 1
 # usage: "SHIFT+arrow" (without prefix key)
 bind -n S-Left  previous-window
 bind -n S-Right next-window
+```
+</script></section><section  data-markdown><script type="text/template">
+## tmux: copier-coller
+
+* `CTRL+b [`: activation du visual mode
+* `v`: pour sélectionner le texte
+* `y`: pour copier la sélection
+* `CTRL+b P`: pour coller
+
+```
+set-window-option -g mode-keys vi
+bind P paste-buffer
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -selection clipboard -i"
+bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
+```</script></section><section  data-markdown><script type="text/template">
+## tmux: interaction avec vim
+
+`sudo apt install vim-gnome`
+
+```
+" Make vim use the system clipboard:
+set clipboard^=unnamed,unnamedplus
+" Prevent vim from clearing system clipboard buffer
+autocmd VimLeave * call system("xsel -ib", getreg('+'))
 ```
 </script></section><section  data-markdown><script type="text/template">
 ## tmux: démarrage
@@ -650,7 +685,7 @@ https://github.com/jlevy/the-art-of-command-line
 </script></section></div>
     </div>
     <footer>
-    Atelier Paris Web 2019 - N'ayez plus peur de votre terminal ! - @_franek_ - 2019
+    Atelier Paris Web 2019 - N'ayez plus peur de votre terminal ! - François DUME - @_franek_ - 2019
     </footer>
 
     <script src="./js/reveal.js"></script>
