@@ -488,6 +488,8 @@ bind-key -T copy-mode-vi v send-keys -X begin-selection
 bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -selection clipboard -i"
 bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
 ```
+
+https://romainpellerin.eu/copy-pasting-in-tmux-and-vim.html
 ---
 
 ## tmux: interaction avec vim
