@@ -9,22 +9,13 @@ Cet atelier est accessible à des débutants. Je pensais au départ présenter d
 Nous commencerons par des choses simples. Nous verrons sur la fin des choses un peu plus complexes.
 Je voulais au départ faire mes slides dans le terminal ([mdp](mdp) est chouette) mais je me suis rabattu sur reveal.js.
 
-<!--
 ---
 
-## @\_franek\_ 
+<!-- .slide: data-background-image="data/milind-kaduskar-pzKb6pAIL94-unsplash.jpg" style="background-color: black;" -->
 
- * JoliCode depuis 4 ans
- * expertise PHP🐘/Symfony/devops
- * utilisateur de Linux depuis longtemps
-
-#velotaf #bakfiets #Chti
--->
----
- 
  * Présentation axée autour de Bash pour Linux (ça fonctionnera peut-être sur d'autres OS/interpréteurs)
  * On ne parlera pas de Windows -- .bat -- (même si le terminal s'améliore)
-
+ 
 note: 
  * c'est le terminal que j'utilise au quotidien
  * ça fonctionnera sûrement sur Mac moins bien sur les vieux Windows
@@ -38,7 +29,7 @@ note:
 
 ---
 
-## Quel temps fait-il aujourd'hui à Strasbourg ? 
+## Quel temps fait-il aujourd'hui ☀️ ? 
 
 ---
 
@@ -61,6 +52,12 @@ https://github.com/chubin/wttr.in
 
 `curl ifconfig.co`
 
+---
+## Copie locale d'une vidéo Youtube
+
+`$ youtube-dl url`
+
+https://github.com/ytdl-org/youtube-dl/
 ---
 
 Fautes de frappe: `gti` au lieu de `git` 
@@ -186,7 +183,7 @@ screen-256color
 ```
 # pour activer la couleur
 ~/.bashrc
-export TERM="xterm-color" 
+export TERM="xterm-256color" 
 ```
 note:
  * Pour savoir si la coloration syntaxique est activable dans votre environnement, vérifier la variable d'environnement $TERM
@@ -291,6 +288,31 @@ note:
 
 ---
 
+## Alias
+
+Lister les alias: <!-- .element style="text-align:left;" -->
+
+`$ alias`
+
+Ajouter un alias temporaire: <!-- .element style="text-align:left;" -->
+
+
+`$ alias whatsmyip="curl https://ifconfig.co/"`
+
+Ajouter des alias permanents: <!-- .element style="text-align:left;" -->
+
+
+```
+# ~/.bash_aliases
+alias whatsmyip="curl https://ifconfig.co/"
+alias meteo='curl "wttr.in/Strasbourg?lang=fr"'
+# permet d'ouvrir un fichier avec le logiciel le plus adapté
+alias open="xdg-open"
+alias top_process="ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
+```
+
+---
+
 <!-- .slide: data-background-video="data/tabulation.mp4" -->
 ### Autocomplétion (1/2)
 
@@ -340,13 +362,36 @@ note:
 
 `CTRL+R`
 
-fzf : 
+[fzf](https://github.com/junegunn/fzf)
 
 ```
 $ sudo apt install fzf
 # ~/.bashrc
-[-f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
+[-f /usr/share/doc/fzf/examples/key-bindings.bash ] \
+&& source /usr/share/doc/fzf/examples/key-bindings.bash
 ```
+
+---
+
+## Copier/Coller: sélection avec la souris
+
+ `CTRL + SHIFT + C/V`
+  
+---
+
+### Copier/Coller: depuis un script
+  
+`pbcopy` (Mac) `xclip` (Linux)
+
+`alias pbcopy='xclip -selection clipboard'`
+`alias pbpaste='xclip -selection clipboard -o'`
+
+Exemple:
+
+`$ otp arteext | pbcopy` : permet de coller le presse papier le résultat de otp arteext.
+
+[tmux-in-practice](https://www.freecodecamp.org/news/tmux-in-practice-integration-with-system-clipboard-bcd72c62ff7b/)
+
 
 ---
 ## Gestion des processus
@@ -358,54 +403,6 @@ $ sudo apt install fzf
 
 note: 
  * `CTRL + C`: A utiliser quand vous êtes coincés, `vim` est un contre-exemple
-
----
-
-## Copier/Coller: sélection avec la souris
-
-
- `CTRL + SHIFT + C/V`
-  
----
-## Copier/Coller: depuis un script
-  
-`pbcopy` (Mac) `xclip` (Linux)
-
-`alias pbcopy='xclip -selection clipboard'`
-`alias pbpaste='xclip -selection clipboard -o'`
-
-Exemple:
-
-`$ otp arteext |pbcopy` : permet de coller le presse papier le résultat de otp arteext.
-  
-
-
-https://www.freecodecamp.org/news/tmux-in-practice-integration-with-system-clipboard-bcd72c62ff7b/
-
----
-
-## Alias
-
-Lister les alias: <!-- .element style="text-align:left;" -->
-
-`$ alias`
-
-Ajouter un alias temporaire: <!-- .element style="text-align:left;" -->
-
-
-`$ alias whatsmyip="curl https://ifconfig.co/"`
-
-Ajouter des alias permanents: <!-- .element style="text-align:left;" -->
-
-
-```
-# ~/.bash_aliases
-alias whatsmyip="curl https://ifconfig.co/"
-alias meteo='curl "wttr.in/Strasbourg?lang=fr"'
-# permet d'ouvrir un fichier avec le logiciel le plus adapté
-alias open="xdg-open"
-alias top_process="ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
-```
 
 ---
 
@@ -444,11 +441,14 @@ https://github.com/tmux/tmux
 
  * lister les sessions : `tmux ls`
  * se connecter à la sessions : `tmux at -t 0`
- * quitter tmux et laisser les sessions ouvertes: `CTRL+d` 
+ * quitter tmux et laisser les sessions ouvertes: `CTRL+b + d` 
+ * nouvelle session: `CTRL+b + new title`
  * splitter les fenêtres : `CTRL+b + %` / `CTRL+b + "`
  * lister les fenêtres : `CTRL+b + w`
  * renommer l'onglet (`window`) : `CTRL+b + ,`
  * renommer la fenêtre (`session`) : `CTRL+b $`
+ 
+[Tmux Cheat Sheet](https://tmuxcheatsheet.com/)
 
 ---
 
@@ -794,4 +794,17 @@ https://github.com/jlevy/the-art-of-command-line
   
 ---
 
+## @\_franek\_ 
+
+ * JoliCode / ARTE GEIE (Strasbourg)
+ * expertise Symfony, API, DevOps
+ * team #velotaf #cargo
+---
+
 ## Merci
+
+---
+
+Credits:
+
+* [Photo by Milind Kaduskar on Unsplash](https://unsplash.com/photos/pzKb6pAIL94)
