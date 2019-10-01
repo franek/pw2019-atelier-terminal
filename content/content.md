@@ -388,7 +388,7 @@ $ sudo apt install fzf
 
 Exemple:
 
-`$ otp arteext | pbcopy` : permet de coller le presse papier le résultat de otp arteext.
+`$ otp arteext | pbcopy` : permet de copier/coller dans le presse papier le résultat de otp arteext.
 
 [tmux-in-practice](https://www.freecodecamp.org/news/tmux-in-practice-integration-with-system-clipboard-bcd72c62ff7b/)
 
@@ -442,7 +442,7 @@ https://github.com/tmux/tmux
  * lister les sessions : `tmux ls`
  * se connecter à la sessions : `tmux at -t 0`
  * quitter tmux et laisser les sessions ouvertes: `CTRL+b + d` 
- * nouvelle session: `CTRL+b + new title`
+ * nouvelle session: `CTRL+b + :new title`
  * splitter les fenêtres : `CTRL+b + %` / `CTRL+b + "`
  * lister les fenêtres : `CTRL+b + w`
  * renommer l'onglet (`window`) : `CTRL+b + ,`
