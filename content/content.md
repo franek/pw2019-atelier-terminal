@@ -33,7 +33,7 @@ note:
 
 ---
 
-<asciinema-player src="data/meteo.cast" cols="205" rows="56" autoplay="autoplay" loop="loop"></asciinema-player>
+![capture d'une commande permettant d'afficher la météo](./data/capture-meteo.png)
 
 ---
 
@@ -43,7 +43,7 @@ $ curl "wttr.in/Paris?lang=fr&format=v2"
 $ curl "wttr.in/Wasquehal?lang=fr&format=%l:+%c+%t
 ```
 
-Plein d'autres options:
+Plein d'autres options :
  
 https://github.com/chubin/wttr.in
 
@@ -60,32 +60,15 @@ https://github.com/chubin/wttr.in
 https://github.com/ytdl-org/youtube-dl/
 ---
 
-Fautes de frappe: `gti` au lieu de `git` 
-
-<asciinema-player src="data/gti.cast" cols="205" rows="56" autoplay="autoplay" loop="loop"></asciinema-player>
-
-sources: https://github.com/rwos/gti
+## Animation : fautes de frappe
+ 
+* `gti` au lieu de `git` : https://github.com/rwos/gti
+* `sl` au lieu de `ls`
 
 ---
 
-Fautes de frappe: `sl` au lieu de `ls` 
+![capture sl](./data/capture-sl.png)
 
-<asciinema-player src="data/sl.cast" cols="205" rows="56" autoplay="autoplay" loop="loop"></asciinema-player>
-
-<!-- ---
-
-Un zoo dans le terminal (`cowsay` / `cowthink`)
-
-```
-find /usr/share/cowsay/cows/ -exec sh -c "cowsay -f {} Paris Web 2019 \#shareTheLove | lolcat && sleep 1 && clear" \;
-``` 
-
-<asciinema-player src="data/cow.cast" cols="205" rows="20" autoplay="autoplay" loop="loop"></asciinema-player>
-
-https://fr.wikipedia.org/wiki/Cowsay
-  
-  
- -->
 ---
 
 #### Les interpréteurs de commande 🐚
@@ -109,9 +92,9 @@ note:
 
   - `command --help`
   - `man command` (`man man` pour apprendre à utiliser man)
-  - `man file.5` : Description du format des fichiers de configuration (exemple: `man passwd.5`)
+  - `man file.5` : Description du format des fichiers de configuration (exemple : `man passwd.5`)
   - [tldr.sh](https://tldr.sh/): outil écrit en node permettant de simplifier l'utilisation de man
-  - [explainshell](https://explainshell.com/): outil en ligne permettant d'expliquer une commande shell
+  - [explainshell](https://explainshell.com/) : outil en ligne permettant d'expliquer une commande shell
 
 note: 
  Avant de commencer, j'aimerais vous rendre autonome sur la recherche d'informations. Généralement, votre système disposera de tous les outils vous permettant de comprendre une commande.
@@ -142,7 +125,7 @@ note:
 ![explication sur l'ordre de chargement des fichiers de démarrage BASH](./data/bash-startup-files.png)
 
 
-(sources: http://www.solipsys.co.uk/new/BashInitialisationFiles.html)
+(sources : http://www.solipsys.co.uk/new/BashInitialisationFiles.html)
 
 note:
   Pas totalement vrai mais c'est pour montrer la complexité du truc.
@@ -227,13 +210,13 @@ Activation de la coloration syntaxique
 syntax on
 ```
 ---
-### Configurer son prompt (1/2)
+### Configurer son prompt (1/3)
 
 ```
 user@machine:/path (branche extra) $ 
 ```
 
-Exemple: 
+Exemple : 
 
 ```shell script
 franek@micha:~/dev/pw2019-atelier-terminal (master *% u=) $ 
@@ -245,9 +228,8 @@ Convention du suffixe :
 
 ---
 
-### Configurer son prompt (2/2)
-
-Ma config: 
+### Configurer son prompt (2/3)
+ 
 ```
 # à placer dans ~/.bashrc
 [ -f /usr/lib/git-core/git-sh-prompt ] \ 
@@ -265,11 +247,24 @@ Source : https://delicious-insights.com/fr/articles/prompt-git-qui-dechire/
 
 ---
 
+### Configurer son prompt (3/3) : utilisation de powerline
+
+<!-- .slide: data-background-image="data/capture-powerline.png" -->
+
+```sudo apt install powerline powerline-gitstatus```
+
+```
+# ~/.bashrc
+. /usr/share/powerline/integrations/powerline.sh
+```
+
+---
+
 ### Configuration simplifiée
 
  * Oh My Bash : https://ohmybash.github.io/
  * Oh My Zsh: https://ohmyz.sh/
- * Bash-it: https://github.com/Bash-it/bash-it
+ * Bash-it : https://github.com/Bash-it/bash-it
 
 note:
   * Je viens de vous présenter la théorie mais si vous ne souhaitez pas vous embêtez vous pouvez utiliser des outils qui intègrent déjà tout ça.
@@ -278,28 +273,28 @@ note:
 
 ### Quelques commandes que vous devez connaître
 
- - `cd`: *change directory*
- - `pwd`: affiche le répertoire courant
- - `tail -f fichier.log`: retourne en continue la fin d'un fichier
- - `sudo`: exécute une commande en tant que root
- - `passwd`: modification d'un mot de passe
- - `ls`: pour lister les fichiers/répertoires dans un répertoire
- - `curl`: pour faire des requêtes HTTP
+ - `cd` : *change directory*
+ - `pwd` : affiche le répertoire courant
+ - `tail -f fichier.log` : retourne en continue la fin d'un fichier
+ - `sudo` : exécute une commande en tant que root
+ - `passwd` : modification d'un mot de passe
+ - `ls` : pour lister les fichiers/répertoires dans un répertoire
+ - `curl` : pour faire des requêtes HTTP
 
 ---
 
 ## Alias
 
-Lister les alias: <!-- .element style="text-align:left;" -->
+Lister les alias : <!-- .element style="text-align:left;" -->
 
 `$ alias`
 
-Ajouter un alias temporaire: <!-- .element style="text-align:left;" -->
+Ajouter un alias temporaire : <!-- .element style="text-align:left;" -->
 
 
 `$ alias whatsmyip="curl https://ifconfig.co/"`
 
-Ajouter des alias permanents: <!-- .element style="text-align:left;" -->
+Ajouter des alias permanents : <!-- .element style="text-align:left;" -->
 
 
 ```
@@ -337,17 +332,17 @@ Les fichiers de configuration de l'autocomplétion sont à placer dans /etc/bash
 
 ### Raccourcis claviers (1/2)
 
-  * `CTRL + U` : couper tout ce qui est à gauche
-  * `CTRL + W` : suppression du mot avant (couper)
-  * `CTRL + Y` : coller ce qui a été coupé par `CTRL+W/U`
-  * `CTRL + E` : va a la fin    
-  * `CTRL + A` : va au début
-  * `CTRL + L` : clear
-  * `CTRL + D` : exit
+  * `CTRL + u` : couper tout ce qui est à gauche
+  * `CTRL + w` : suppression du mot avant (couper)
+  * `CTRL + y` : coller ce qui a été coupé par `CTRL+W/U`
+  * `CTRL + e` : va a la fin    
+  * `CTRL + a` : va au début
+  * `CTRL + l` : clear
+  * `CTRL + d` : exit
 
 ---
 
-### Raccourcis claviers (1/2)
+### Raccourcis claviers (2/2)
 
 `man readline` pour une liste plus complète.
 
@@ -373,20 +368,20 @@ $ sudo apt install fzf
 
 ---
 
-## Copier/Coller: sélection avec la souris
+## Copier/Coller : sélection avec la souris
 
  `CTRL + SHIFT + C/V`
   
 ---
 
-### Copier/Coller: depuis un script
+### Copier/Coller : depuis un script
   
 `pbcopy` (Mac) `xclip` (Linux)
 
 `alias pbcopy='xclip -selection clipboard'`
 `alias pbpaste='xclip -selection clipboard -o'`
 
-Exemple:
+Exemple :
 
 `$ otp arteext | pbcopy` : permet de copier/coller dans le presse papier le résultat de otp arteext.
 
@@ -396,19 +391,19 @@ Exemple:
 ---
 ## Gestion des processus
 
- * `command &`: permet d'exécuter une commande en arrière plan
- * `CTRL + C`: tuer un processus
- * `CTRL + Z`: stopper une application en arrière plan
+ * `command &` : permet d'exécuter une commande en arrière plan
+ * `CTRL + C` : tuer un processus
+ * `CTRL + Z` : stopper une application en arrière plan
  * (`bg 1` pour activer la tâche en arrière plan, `fg 1` pour la remettre au premier plan)
 
 note: 
- * `CTRL + C`: A utiliser quand vous êtes coincés, `vim` est un contre-exemple
+ * `CTRL + C` : A utiliser quand vous êtes coincés, `vim` est un contre-exemple
 
 ---
 
 ### Executer une tâche en tâche de fond (background) (1/2)
   
-  * utilisation de `&`  (inconvénient: si la session est fermée - perte connexion SSH -, la commande s'arrête).
+  * utilisation de `&`  (inconvénient : si la session est fermée - perte connexion SSH -, la commande s'arrête).
   
   `$ sleep 300 &`
   
@@ -426,7 +421,7 @@ note:
     
 ---
 
-### tmux: présentation
+### tmux : présentation
 
 https://github.com/tmux/tmux
 
@@ -437,7 +432,7 @@ https://github.com/tmux/tmux
  
 ---
 
-## tmux: raccourcis
+## tmux : raccourcis
 
  * lister les sessions : `tmux ls`
  * se connecter à la sessions : `tmux at -t 0`
@@ -452,7 +447,7 @@ https://github.com/tmux/tmux
 
 ---
 
-## tmux: configuration
+## tmux : configuration
 
 ```
 # ~/.tmux.conf
@@ -474,7 +469,7 @@ bind -n S-Right next-window
 
 ---
 
-## tmux: copier-coller
+## tmux : copier-coller
 
 * `CTRL+b [`: activation du visual mode
 * `v`: pour sélectionner le texte
@@ -492,7 +487,7 @@ bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
 https://romainpellerin.eu/copy-pasting-in-tmux-and-vim.html
 ---
 
-## tmux: interaction avec vim
+## tmux : interaction avec vim
 
 `sudo apt install vim-gnome`
 
@@ -505,7 +500,7 @@ autocmd VimLeave * call system("xsel -ib", getreg('+'))
 
 ---
 
-## tmux: démarrage
+## tmux : démarrage
 
 ```
 # ~/.bashrc
@@ -524,12 +519,12 @@ note:
   
 ---
 
-#### git: configuration
+#### git : configuration
 
- * configuration:
-   - système: `/etc/gitconfig` 
-   - global: `~/.gitconfig`
-   - par projet: `projet/.gitconfig` (surcharge configuration globale)
+ * configuration :
+   - système : `/etc/gitconfig` 
+   - global : `~/.gitconfig`
+   - par projet : `projet/.gitconfig` (surcharge configuration globale)
 
  * Très bonne ressource: [Une configuration Git aux petits oignons - Delicious Insights](https://delicious-insights.com/fr/articles/configuration-git/)
  
@@ -537,7 +532,7 @@ note:
 La configuration de git se fait dans le fichier `.gitconfig`.
 
 ---
-#### git: de la couleur
+#### git : de la couleur
 
 ```shell script
 # ~/.gitconfig
@@ -546,7 +541,7 @@ ui = true
 ```
 
 ---
-#### git: un .gitignore global
+#### git : un .gitignore global
 
 ```shell script
 # ~/.gitconfig
@@ -569,7 +564,7 @@ desktop.ini
 ```
 
 ---
-#### git: alias
+#### git : alias
 
 ```shell script
 # .gitconfig
@@ -589,9 +584,9 @@ Plein de chouettes alias chez [Lyrixx](https://github.com/lyrixx/dotfiles/blob/m
 
 ---
 
-#### git: choisir votre éditeur
+#### git : choisir votre éditeur
 
-Par défaut, utilisation de la variable d'environnement: <!-- .element style="text-align:left;" --> 
+Par défaut, utilisation de la variable d'environnement : <!-- .element style="text-align:left;" --> 
 
 `$EDITOR`
 
@@ -613,7 +608,7 @@ Possibilité de surcharger cette configuration :  <!-- .element style="text-alig
 ```
 
 ---
-#### git: autre configuration
+#### git : autre configuration
 
 ```shell script
 [push]
@@ -650,7 +645,7 @@ https://hub.github.com/
  * créer des releases, ...
 
 ---
-### git: clone en mode SSH (1/2)
+### git : clone en mode SSH (1/2)
 
 `git clone git@github.com:symfony/symfony.git`<br />
 à la place de<br />
@@ -660,7 +655,7 @@ note:
   Github présente par défaut la possibilité de cloner en utilisant https. C'est très bien. C'est plus facile de récupérer un dépôt en HTTPS (firewall, ...) mais on perd plein de fonctionnalités. Cela nous oblige à saisir le mot de passe régulièrement. Il est préférable d'utiliser SSH.
 
 ---
-### git: clone en mode SSH (2/2)
+### git : clone en mode SSH (2/2)
 
 ```
 # générer votre clé SSH
@@ -687,7 +682,7 @@ Aide: https://help.github.com/en/articles/connecting-to-github-with-ssh
 
 ---
 
-### SSH: ssh-copy-id
+### SSH : ssh-copy-id
 
 Copier votre clé SSH sur un serveur distant:
 
@@ -698,7 +693,7 @@ Copier votre clé SSH sur un serveur distant:
 
 ---
 
-### SSH: création d'alias
+### SSH : création d'alias
 
 ```
 # ~/.ssh/config
@@ -715,7 +710,7 @@ User client1
 
 ---
 
-### SSH: parallel-ssh
+### SSH : parallel-ssh
  
 Permet d'effectuer des tâches similaires sur plusieurs serveurs:
  
@@ -726,13 +721,13 @@ $ parallel-ssh -i -H user@server1 -H user@server2 -H user@server3 hostname
 
 ---
 
-### SSH: bastion SSH (1/2)
+### SSH : bastion SSH (1/2)
 
 ![Bastion SSH par Octo](./data/bastion-ssh.png) <!-- .element style="background-color:white;" -->
 
 ---
 
-### SSH: bastion SSH (2/2)
+### SSH : bastion SSH (2/2)
 
 ```
 # ~/.ssh/config
@@ -751,7 +746,7 @@ Connexion automatique au serveur protégé via un rebond sur le bastion SSH.
 
 ---
 
-### SSH: tunnel SSH avec redirection de port
+### SSH : tunnel SSH avec redirection de port
 
 Création d'un proxy SOCKS
 
@@ -759,7 +754,7 @@ Création d'un proxy SOCKS
 
 Configurer votre navigateur pour utiliser ce proxy.
 
-Autre solution: [sshutle](https://github.com/sshuttle/sshuttle)
+Autre solution : [sshutle](https://github.com/sshuttle/sshuttle)
 
 ```
 $ apt-get install sshuttle
@@ -777,11 +772,11 @@ $ sshuttle --dns -r user@serveur 0/0
 
 ## Présentation d'autres outils chouettes/pratiques
 
-  * `youtube-dl`: ne fonctionne pas que pour Youtube
-  * `python -m SimpleHTTPServer`: publier un site web rapidement  ([doc Mozilla](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server#Running_a_simple_local_HTTP_server))
-  * `nmap`: pour lister les ports ouverts
-  * [mitmproxy](https://mitmproxy.org/): proxy permettant d'analyser le trafic 
-  * `dig`: pour requêter le DNS
+  * `youtube-dl` : ne fonctionne pas que pour Youtube
+  * `python -m SimpleHTTPServer` : publier un site web rapidement  ([doc Mozilla](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server#Running_a_simple_local_HTTP_server))
+  * `nmap` : pour lister les ports ouverts
+  * [mitmproxy](https://mitmproxy.org/) : proxy permettant d'analyser le trafic 
+  * `dig` : pour requêter le DNS
   * ... (et plein d'autres choses)
 
 ---
@@ -805,6 +800,6 @@ https://github.com/jlevy/the-art-of-command-line
 
 ---
 
-Credits:
+Credits :
 
 * [Photo by Milind Kaduskar on Unsplash](https://unsplash.com/photos/pzKb6pAIL94)
