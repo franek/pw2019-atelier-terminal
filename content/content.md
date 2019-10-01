@@ -1,13 +1,12 @@
-## N'ayez plus peur de votre terminal !
-
-par François Dume
+## N'ayez plus peur de votre terminal ! 💻
+#### par François Dume
 
 note: 
 Bonjour, je m'appelle François Dume. Je vais animer aujourd'hui cet atelier dédié à l'utilisation du terminal.
 Mon objectif est de vous donner envie d'utiliser votre terminal et démystifier certains outils.
 Cet atelier est accessible à des débutants. Je pensais au départ présenter des outils pour un public intermédiaire mais en discutant avec certain d'entre vous. On m'a conseillé de faire un truc accessible. 
 Nous commencerons par des choses simples. Nous verrons sur la fin des choses un peu plus complexes.
-Je voulais au départ faire mes slides dans le terminal ([mdp](mdp) est chouette) mais je me suis rabattu sur reveal.js.
+Je voulais au départ faire mes slides dans le terminal ([mdp](https://github.com/visit1985/mdp) est chouette) mais je me suis rabattu sur reveal.js.
 
 ---
 
@@ -22,7 +21,7 @@ note:
  * au début on verra des choses assez simples mais ça va se complexifier sur la fin
 ---
 
-## Command line is fun !
+### Command line is fun !🎈
 
 note: 
   J'aime beaucoup mon terminal et j'aimerais vous montrer des choses marrantes à faire. Mais avant de commencer, ... 
@@ -79,7 +78,7 @@ https://github.com/ytdl-org/youtube-dl/
     - fusion de l'ensemble des fonctionnalités présentes dans sh, csh, ksh, 
     - présents sur la majorité des systèmes, 
     - ajout de l'autocomplétion (touche `<TAB>`)
-  * [zsh](https://en.wikipedia.org/wiki/Z_shell): par défaut sous Mac0S à partir de la version 10.15 (Catalina), étend les fonctionnalités de bash
+  * [zsh](https://en.wikipedia.org/wiki/Z_shell): par défaut sous MacOS à partir de la version 10.15 (Catalina), étend les fonctionnalités de bash
   * 🐠 [fish](https://en.wikipedia.org/wiki/Friendly_interactive_shell)
   
 note: 
@@ -93,7 +92,7 @@ note:
   - `command --help`
   - `man command` (`man man` pour apprendre à utiliser man)
   - `man file.5` : Description du format des fichiers de configuration (exemple : `man passwd.5`)
-  - [tldr.sh](https://tldr.sh/): outil écrit en node permettant de simplifier l'utilisation de man
+  - [tldr.sh](https://tldr.sh/): outil écrit en Node.js permettant de simplifier l'utilisation de man
   - [explainshell](https://explainshell.com/) : outil en ligne permettant d'expliquer une commande shell
 
 note: 
@@ -334,7 +333,7 @@ Les fichiers de configuration de l'autocomplétion sont à placer dans /etc/bash
 
   * `CTRL + u` : couper tout ce qui est à gauche
   * `CTRL + w` : suppression du mot avant (couper)
-  * `CTRL + y` : coller ce qui a été coupé par `CTRL+W/U`
+  * `CTRL + y` : coller ce qui a été coupé par `CTRL + w/u`
   * `CTRL + e` : va a la fin    
   * `CTRL + a` : va au début
   * `CTRL + l` : clear
@@ -353,7 +352,7 @@ note:
 
 ---
 
-## Focus sur la recherche dans l'historique des commandes
+### Recherche dans l'historique des commandes
 
 `CTRL+R`
 
@@ -368,36 +367,35 @@ $ sudo apt install fzf
 
 ---
 
-## Copier/Coller : sélection avec la souris
+### Copier/Coller : sélection avec la souris
 
- `CTRL + SHIFT + C/V`
+ `CTRL + SHIFT + c/v`
   
 ---
 
 ### Copier/Coller : depuis un script
   
-`pbcopy` (Mac) `xclip` (Linux)
+`pbcopy` (MacOS) | `xclip` (Linux)
 
-`alias pbcopy='xclip -selection clipboard'`
-`alias pbpaste='xclip -selection clipboard -o'`
+```
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+```
 
 Exemple :
 
 `$ otp arteext | pbcopy` : permet de copier/coller dans le presse papier le résultat de otp arteext.
 
-[tmux-in-practice](https://www.freecodecamp.org/news/tmux-in-practice-integration-with-system-clipboard-bcd72c62ff7b/)
-
-
 ---
 ## Gestion des processus
 
  * `command &` : permet d'exécuter une commande en arrière plan
- * `CTRL + C` : tuer un processus
- * `CTRL + Z` : stopper une application en arrière plan
+ * `CTRL + c` : tuer un processus
+ * `CTRL + z` : stopper une application en arrière plan
  * (`bg 1` pour activer la tâche en arrière plan, `fg 1` pour la remettre au premier plan)
 
 note: 
- * `CTRL + C` : A utiliser quand vous êtes coincés, `vim` est un contre-exemple
+ * `CTRL + c` : A utiliser quand vous êtes coincés, `vim` est un contre-exemple
 
 ---
 
@@ -432,7 +430,7 @@ https://github.com/tmux/tmux
  
 ---
 
-## tmux : raccourcis
+### tmux : raccourcis
 
  * lister les sessions : `tmux ls`
  * se connecter à la sessions : `tmux at -t 0`
@@ -447,7 +445,7 @@ https://github.com/tmux/tmux
 
 ---
 
-## tmux : configuration
+### tmux : configuration
 
 ```
 # ~/.tmux.conf
@@ -469,7 +467,7 @@ bind -n S-Right next-window
 
 ---
 
-## tmux : copier-coller
+### tmux : copier-coller
 
 * `CTRL+b [`: activation du visual mode
 * `v`: pour sélectionner le texte
@@ -487,7 +485,7 @@ bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
 https://romainpellerin.eu/copy-pasting-in-tmux-and-vim.html
 ---
 
-## tmux : interaction avec vim
+### tmux : interaction avec vim
 
 `sudo apt install vim-gnome`
 
@@ -500,7 +498,7 @@ autocmd VimLeave * call system("xsel -ib", getreg('+'))
 
 ---
 
-## tmux : démarrage
+### tmux : démarrage
 
 ```
 # ~/.bashrc
@@ -678,7 +676,7 @@ Aide: https://help.github.com/en/articles/connecting-to-github-with-ssh
 
  * Protocole à privilégier
  * Utilisation du port 22
- * N'utilisez plus telnet ou FTP.
+ * N'utilisez plus telnet ou FTP
 
 ---
 
@@ -763,16 +761,15 @@ $ sshuttle --dns -r user@serveur 0/0
 
 ---
 
-## Dotfiles de la communauté
+### Dotfiles de la communauté
 
  * https://dotfiles.github.io/: communauté de fichiers de configurations (dotfiles)
  * [chezmoi](https://github.com/twpayne/chezmoi): outil permettant de gérer ses dotfiles
 
 ---
 
-## Présentation d'autres outils chouettes/pratiques
+### Autres outils chouettes
 
-  * `youtube-dl` : ne fonctionne pas que pour Youtube
   * `python -m SimpleHTTPServer` : publier un site web rapidement  ([doc Mozilla](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server#Running_a_simple_local_HTTP_server))
   * `nmap` : pour lister les ports ouverts
   * [mitmproxy](https://mitmproxy.org/) : proxy permettant d'analyser le trafic 
@@ -789,11 +786,12 @@ https://github.com/jlevy/the-art-of-command-line
   
 ---
 
-## @\_franek\_ 
+### François Dume  @\_franek\_ 
 
  * JoliCode / ARTE GEIE (Strasbourg)
  * expertise Symfony, API, DevOps
  * team #velotaf #cargo
+ * mes dotfiles : https://github.com/franek/dotfiles
 ---
 
 ## Merci
