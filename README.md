@@ -43,4 +43,9 @@ TODO
 - [ ] lsix - https://github.com/hackerb9/lsix
 - [ ] figlet pour afficher des messages
 - [ ] sauvegarder les commandes réalisés : https://tutorialinux.com/how-to-record-command-line-sessions/
+- [ ] parler de cron et des variable d'environnement qui ne sont pas définis
+- [ ] les variables d'env $HOME, $LOCALE, ... - export
+- [ ] sort / sed / awk
+- [ ] find --rm et locate
+- [ ] lien symbolique
 

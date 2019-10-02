@@ -159,7 +159,8 @@ Coloration syntaxique activée par défaut sur la plupart des systèmes
 ```
 # vérifier que la couleur est bien activée
 $ echo "$TERM"
-screen-256color
+xterm-256color
+screen-256color # si vous utilisez tmux
 ```
  
 ```
@@ -351,12 +352,49 @@ note:
   * Si vous ne devez retenir que quelques petites choses, ce sont les raccourcis clavier.
 
 ---
+### `history` : recherche
 
-### Recherche dans l'historique des commandes
+* `history` : liste de l'historique des commandes exécutées
+* historique sauvegardé dans : `~/.history` 
+* Raccourci clavier : `CTRL + r`
+* Configuration possible : 
 
-`CTRL+R`
+```
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
 
-[fzf](https://github.com/junegunn/fzf)
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+HISTFILESIZE=2000
+```
+
+---
+### `history` : raccourcis
+
+`man history`
+
+```
+!      Start a history substitution, except when followed by a blank, newline, = or (.
+!n     Refer to command line n.
+!-n    Refer to the current command minus n.
+!!     Refer to the previous command.  This is a synonym for `!-1'.
+!string Refer to the most recent command preceding the current position in the history list starting with string.
+!?string[?] Refer to the most recent command preceding the current position in the history list containing string.  The trailing ? may be omitted if string is followed immediately by a newline.
+^string1^string2^ Quick substitution.  Repeat the last command, replacing string1 with string2.  Equivalent to ``!!:s/string1/string2/'' (see Modifiers below).
+!#     The entire command line typed so far.
+
+```
+
+---
+
+### `history` : utilisation de `fzf`
+
+Possibilité d'améliorer l'affichage de `CTRL + r` avec [fzf](https://github.com/junegunn/fzf)
 
 ```
 $ sudo apt install fzf
