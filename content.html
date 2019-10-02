@@ -26,7 +26,7 @@ Je voulais au départ faire mes slides dans le terminal (<a href="https://github
 </aside></script></section><section  data-markdown><script type="text/template">
 <!-- .slide: data-background-image="data/milind-kaduskar-pzKb6pAIL94-unsplash.jpg" style="background-color: black;" -->
 
- * Présentation axée autour de Bash pour Linux (ça fonctionnera peut-être sur d'autres OS/interpréteurs)
+ * Présentation axée autour de BASH pour Linux (ça fonctionnera peut-être sur d'autres OS/interpréteurs)
  * On ne parlera pas de Windows -- .bat -- (même si le terminal s'améliore)
  
 <aside class="notes"><ul>
@@ -37,6 +37,18 @@ Je voulais au départ faire mes slides dans le terminal (<a href="https://github
 </li>
 </ul>
 </aside></script></section><section  data-markdown><script type="text/template">
+### Sujets abordés
+
+ * Trouver de l'aide dans votre terminal
+ * Configurer votre terminal (coloration syntaxique, fichiers de configuration, prompt)
+ * Présentation de quelques commandes de base
+ * Créer des alias, rechercher dans l'historique, dans l'arborescence
+ * Raccourcis clavier
+ * Gestion des processus
+ * Présentation `tmux`
+ * Configuration de `git`, utilisation de `hub`
+ * Configuration `SSH`, ... 
+</script></section><section  data-markdown><script type="text/template">
 ### Command line is fun !🎈
 
 <aside class="notes"><p>J&#39;aime beaucoup mon terminal et j&#39;aimerais vous montrer des choses marrantes à faire. Mais avant de commencer, ...</p>
@@ -118,6 +130,19 @@ https://github.com/ytdl-org/youtube-dl/</script></section><section  data-markdow
 | /etc/profile  |   ~/.profile |
 | /etc/bashrc.bashrc  |   **~/.bashrc** |
 | /etc/profile.d/*.sh  |   |
+</script></section><section  data-markdown><script type="text/template">### Les fichiers de configuration: `~/.profile`
+
+Le `~/.profile` va charger le `~/.bashrc` :
+
+```
+# ~/.bashrc
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+        . "$HOME/.bashrc"
+    fi
+fi
+```
 </script></section><section  data-markdown><script type="text/template">### Recharger votre configuration
 
 ```
@@ -183,14 +208,10 @@ Activation de la coloration syntaxique
 syntax on
 ```</script></section><section  data-markdown><script type="text/template">### Configurer son prompt (1/3)
 
-```
-user@machine:/path (branche extra) $ 
-```
-
-Exemple : 
+`$PS1=u@\h:\w\$`
 
 ```shell script
-franek@micha:~/dev/pw2019-atelier-terminal (master *% u=) $ 
+user@machine:/path $ 
 ```
 
 Convention du suffixe :
@@ -211,6 +232,10 @@ export GIT_PS1_DESCRIBE_STYLE=branch
 export GIT_PS1_SHOWCOLORHINTS=1
 export PROMPT_COMMAND='__git_ps1 "\u@\h:\W" " \\\$ "'
 ```
+
+```
+franek@micha:~/dev/pw2019-atelier-terminal (master *% u=) $
+``` 
 
 Source : https://delicious-insights.com/fr/articles/prompt-git-qui-dechire/
 </script></section><section  data-markdown><script type="text/template">
@@ -235,17 +260,32 @@ Source : https://delicious-insights.com/fr/articles/prompt-git-qui-dechire/
 <li>Je viens de vous présenter la théorie mais si vous ne souhaitez pas vous embêtez vous pouvez utiliser des outils qui intègrent déjà tout ça.</li>
 </ul>
 </aside></script></section><section  data-markdown><script type="text/template">
-### Quelques commandes que vous devez connaître
+### Quelques commandes que vous devez connaître (1/2)
 
  - `cd` : *change directory*
  - `pwd` : affiche le répertoire courant
- - `tail -f fichier.log` : retourne en continue la fin d'un fichier
- - `sudo` : exécute une commande en tant que root
- - `passwd` : modification d'un mot de passe
  - `ls` : pour lister les fichiers/répertoires dans un répertoire
+  - `ln -s` : pour créer des liens symboliques
+ - `sudo` : exécute une commande en tant que root (`visudo`, `/etc/sudoers`)
+ - `passwd` : modification d'un mot de passe
  - `curl` : pour faire des requêtes HTTP
 </script></section><section  data-markdown><script type="text/template">
-## Alias
+### Quelques commandes que vous devez connaître (2/2)
+
+ - `tail -f fichier.log` : retourne en continue la fin d'un fichier
+ - `sed` : remplacer du contenu
+ - `awk` : faire du traitement sur les fichiers
+ - `sort` : pour trier
+ 
+```
+# Lister les commandes que vous utilisez le plus souvent
+HISTTIMEFORMAT="" history | awk '{print $2}' \
+    | sort | uniq -c | sort -rn | head
+```
+
+[commandlinefu](https://www.commandlinefu.com)
+</script></section><section  data-markdown><script type="text/template">
+### Alias
 
 Lister les alias : <!-- .element style="text-align:left;" -->
 
@@ -266,6 +306,36 @@ alias meteo='curl "wttr.in/Strasbourg?lang=fr"'
 # permet d'ouvrir un fichier avec le logiciel le plus adapté
 alias open="xdg-open"
 alias top_process="ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
+```
+</script></section><section  data-markdown><script type="text/template">
+### Trouver un fichier : `locate`
+
+```
+# Recherche dans le système de fichier
+$ locate fichier.json
+``` 
+Dépend d'une base de données locale mis à jour chaque jour (via `updatedb`).
+
+```
+/etc/cron.daily$ ls *loc*    
+mlocate
+```
+</script></section><section  data-markdown><script type="text/template">
+### Trouver un fichier : `find`
+
+```shell script
+# Recherche tous les fichiers (`-f`) qui contiennent `my*` à partir du répertoire courant
+$ find . -name 'my*' -type f
+
+# Ignorer les erreurs :
+
+$ find / -name 'my*' -type f 2>/dev/null
+
+# Exécuter une action : 
+$ find /var/ftp/mp3 -name '*.mp3' -type f -exec chmod 644 {} \;
+
+# Rechercher et supprimer :
+$ find . -name bad -empty -delete
 ```
 </script></section><section  data-markdown><script type="text/template">
 <!-- .slide: data-background-video="data/tabulation.mp4" -->
@@ -306,22 +376,19 @@ Par défaut, bash utilise les raccourcis "emacs" (`set -o emacs`).
 </aside></script></section><section  data-markdown><script type="text/template">### `history` : recherche
 
 * `history` : liste de l'historique des commandes exécutées
-* historique sauvegardé dans : `~/.history` 
+* historique sauvegardé dans : `~/.bash_history` 
 * Raccourci clavier : `CTRL + r`
 * Configuration possible : 
 
 ```
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
+# Ne pas stocker de doublons ou les commandes commençantpar un espace
+HISTCONTROL=ignoreboth # équivalent à : ignorespace;ignoredups
 
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+# Nombre de commandes à stocker dans l'historique
 HISTSIZE=1000
-HISTFILESIZE=2000
-HISTFILESIZE=2000
 ```
 </script></section><section  data-markdown><script type="text/template">### `history` : raccourcis
 
@@ -706,8 +773,9 @@ $ sshuttle --dns -r user@serveur 0/0
 <!-- .slide: data-background-image="data/the-art-of-command-line.png" style="background-color:black;padding:10px;" -->
  
 https://github.com/jlevy/the-art-of-command-line
-  </script></section><section  data-markdown><script type="text/template">
-### François Dume  @\_franek\_ 
+</script></section><section  data-markdown><script type="text/template">
+### François Dume 
+[@\_franek\_](https://twitter.com/_franek_) 
 
  * JoliCode / ARTE GEIE (Strasbourg)
  * expertise Symfony, API, DevOps
@@ -715,7 +783,12 @@ https://github.com/jlevy/the-art-of-command-line
  * mes dotfiles : https://github.com/franek/dotfiles</script></section><section  data-markdown><script type="text/template">
 ## Merci
 </script></section><section  data-markdown><script type="text/template">
-Credits :
+### Autres ressources
+
+ * Bash cheatsheets : https://devhints.io/bash
+ * Liste des variables d'environnement : https://wiki.bash-hackers.org/syntax/shellvars
+ * Apprendre BASH en jouant : https://opensource.com/article/19/10/learn-bash-command-line-games
+</script></section><section  data-markdown><script type="text/template">### Credits :
 
 * [Photo by Milind Kaduskar on Unsplash](https://unsplash.com/photos/pzKb6pAIL94)
 </script></section></div>

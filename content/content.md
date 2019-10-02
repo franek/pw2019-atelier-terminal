@@ -12,13 +12,27 @@ Je voulais au départ faire mes slides dans le terminal ([mdp](https://github.co
 
 <!-- .slide: data-background-image="data/milind-kaduskar-pzKb6pAIL94-unsplash.jpg" style="background-color: black;" -->
 
- * Présentation axée autour de Bash pour Linux (ça fonctionnera peut-être sur d'autres OS/interpréteurs)
+ * Présentation axée autour de BASH pour Linux (ça fonctionnera peut-être sur d'autres OS/interpréteurs)
  * On ne parlera pas de Windows -- .bat -- (même si le terminal s'améliore)
  
 note: 
  * c'est le terminal que j'utilise au quotidien
  * ça fonctionnera sûrement sur Mac moins bien sur les vieux Windows
  * au début on verra des choses assez simples mais ça va se complexifier sur la fin
+---
+
+### Sujets abordés
+
+ * Trouver de l'aide dans votre terminal
+ * Configurer votre terminal (coloration syntaxique, fichiers de configuration, prompt)
+ * Présentation de quelques commandes de base
+ * Créer des alias, rechercher dans l'historique, dans l'arborescence
+ * Raccourcis clavier
+ * Gestion des processus
+ * Présentation `tmux`
+ * Configuration de `git`, utilisation de `hub`
+ * Configuration `SSH`, ... 
+
 ---
 
 ### Command line is fun !🎈
@@ -138,6 +152,21 @@ note:
 | /etc/profile.d/*.sh  |   |
 
 ---
+### Les fichiers de configuration: `~/.profile`
+
+Le `~/.profile` va charger le `~/.bashrc` :
+
+```
+# ~/.bashrc
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+        . "$HOME/.bashrc"
+    fi
+fi
+```
+
+---
 ### Recharger votre configuration
 
 ```
@@ -212,14 +241,10 @@ syntax on
 ---
 ### Configurer son prompt (1/3)
 
-```
-user@machine:/path (branche extra) $ 
-```
-
-Exemple : 
+`$PS1=u@\h:\w\$`
 
 ```shell script
-franek@micha:~/dev/pw2019-atelier-terminal (master *% u=) $ 
+user@machine:/path $ 
 ```
 
 Convention du suffixe :
@@ -242,6 +267,10 @@ export GIT_PS1_DESCRIBE_STYLE=branch
 export GIT_PS1_SHOWCOLORHINTS=1
 export PROMPT_COMMAND='__git_ps1 "\u@\h:\W" " \\\$ "'
 ```
+
+```
+franek@micha:~/dev/pw2019-atelier-terminal (master *% u=) $
+``` 
 
 Source : https://delicious-insights.com/fr/articles/prompt-git-qui-dechire/
 
@@ -271,19 +300,36 @@ note:
 
 ---
 
-### Quelques commandes que vous devez connaître
+### Quelques commandes que vous devez connaître (1/2)
 
  - `cd` : *change directory*
  - `pwd` : affiche le répertoire courant
- - `tail -f fichier.log` : retourne en continue la fin d'un fichier
- - `sudo` : exécute une commande en tant que root
- - `passwd` : modification d'un mot de passe
  - `ls` : pour lister les fichiers/répertoires dans un répertoire
+  - `ln -s` : pour créer des liens symboliques
+ - `sudo` : exécute une commande en tant que root (`visudo`, `/etc/sudoers`)
+ - `passwd` : modification d'un mot de passe
  - `curl` : pour faire des requêtes HTTP
 
 ---
 
-## Alias
+### Quelques commandes que vous devez connaître (2/2)
+
+ - `tail -f fichier.log` : retourne en continue la fin d'un fichier
+ - `sed` : remplacer du contenu
+ - `awk` : faire du traitement sur les fichiers
+ - `sort` : pour trier
+ 
+```
+# Lister les commandes que vous utilisez le plus souvent
+HISTTIMEFORMAT="" history | awk '{print $2}' \
+    | sort | uniq -c | sort -rn | head
+```
+
+[commandlinefu](https://www.commandlinefu.com)
+
+---
+
+### Alias
 
 Lister les alias : <!-- .element style="text-align:left;" -->
 
@@ -304,6 +350,40 @@ alias meteo='curl "wttr.in/Strasbourg?lang=fr"'
 # permet d'ouvrir un fichier avec le logiciel le plus adapté
 alias open="xdg-open"
 alias top_process="ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
+```
+
+---
+
+### Trouver un fichier : `locate`
+
+```
+# Recherche dans le système de fichier
+$ locate fichier.json
+``` 
+Dépend d'une base de données locale mis à jour chaque jour (via `updatedb`).
+
+```
+/etc/cron.daily$ ls *loc*    
+mlocate
+```
+
+---
+
+### Trouver un fichier : `find`
+
+```shell script
+# Recherche tous les fichiers (`-f`) qui contiennent `my*` à partir du répertoire courant
+$ find . -name 'my*' -type f
+
+# Ignorer les erreurs :
+
+$ find / -name 'my*' -type f 2>/dev/null
+
+# Exécuter une action : 
+$ find /var/ftp/mp3 -name '*.mp3' -type f -exec chmod 644 {} \;
+
+# Rechercher et supprimer :
+$ find . -name bad -empty -delete
 ```
 
 ---
@@ -355,22 +435,19 @@ note:
 ### `history` : recherche
 
 * `history` : liste de l'historique des commandes exécutées
-* historique sauvegardé dans : `~/.history` 
+* historique sauvegardé dans : `~/.bash_history` 
 * Raccourci clavier : `CTRL + r`
 * Configuration possible : 
 
 ```
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
+# Ne pas stocker de doublons ou les commandes commençantpar un espace
+HISTCONTROL=ignoreboth # équivalent à : ignorespace;ignoredups
 
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+# Nombre de commandes à stocker dans l'historique
 HISTSIZE=1000
-HISTFILESIZE=2000
-HISTFILESIZE=2000
 ```
 
 ---
@@ -821,10 +898,11 @@ $ sshuttle --dns -r user@serveur 0/0
 <!-- .slide: data-background-image="data/the-art-of-command-line.png" style="background-color:black;padding:10px;" -->
  
 https://github.com/jlevy/the-art-of-command-line
-  
+
 ---
 
-### François Dume  @\_franek\_ 
+### François Dume 
+[@\_franek\_](https://twitter.com/_franek_) 
 
  * JoliCode / ARTE GEIE (Strasbourg)
  * expertise Symfony, API, DevOps
@@ -836,6 +914,13 @@ https://github.com/jlevy/the-art-of-command-line
 
 ---
 
-Credits :
+### Autres ressources
+
+ * Bash cheatsheets : https://devhints.io/bash
+ * Liste des variables d'environnement : https://wiki.bash-hackers.org/syntax/shellvars
+ * Apprendre BASH en jouant : https://opensource.com/article/19/10/learn-bash-command-line-games
+
+---
+### Credits :
 
 * [Photo by Milind Kaduskar on Unsplash](https://unsplash.com/photos/pzKb6pAIL94)
