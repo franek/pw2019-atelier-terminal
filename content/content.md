@@ -10,7 +10,7 @@ Je voulais au départ faire mes slides dans le terminal ([mdp](https://github.co
 
 ---
 
-<!-- .slide: data-background-image="data/milind-kaduskar-pzKb6pAIL94-unsplash.jpg" style="background-color: black;" -->
+<!-- .slide: data-background-image="data/dan-gold-8PBVWiZR2NM-unsplash.jpg" style="background-color: #333;" -->
 
  * Présentation axée autour de BASH pour Linux (ça fonctionnera peut-être sur d'autres OS/interpréteurs)
  * On ne parlera pas de Windows -- .bat -- (même si le terminal s'améliore)
@@ -21,7 +21,7 @@ note:
  * au début on verra des choses assez simples mais ça va se complexifier sur la fin
 ---
 
-### Sujets abordés
+### Sujets abordés 📖
 
  * Trouver de l'aide dans votre terminal
  * Configurer votre terminal (coloration syntaxique, fichiers de configuration, prompt)
@@ -35,7 +35,7 @@ note:
 
 ---
 
-### Command line is fun !🎈
+### Command line is fun!🎈
 
 note: 
   J'aime beaucoup mon terminal et j'aimerais vous montrer des choses marrantes à faire. Mais avant de commencer, ... 
@@ -63,7 +63,7 @@ https://github.com/chubin/wttr.in
 ---
 ## Quelle est votre IP ?
 
-`curl ifconfig.co`
+`$ curl ifconfig.co`
 
 ---
 ## Copie locale d'une vidéo Youtube
@@ -72,12 +72,14 @@ https://github.com/chubin/wttr.in
 
 https://github.com/ytdl-org/youtube-dl/
 
---- 
+---
+
 ## Monitoring
 
 ![Sampler](https://user-images.githubusercontent.com/6069066/56404396-70b14d00-6234-11e9-93cd-54461bf40c96.gif)
 
 https://github.com/sqshq/sampler
+
 ---
 
 ## Animation : fautes de frappe
@@ -91,15 +93,15 @@ https://github.com/sqshq/sampler
 
 ---
 
-#### Les interpréteurs de commande 🐚
+#### Les interpréteurs de commandes 
 
-  * [sh](https://fr.wikipedia.org/wiki/Bourne_shell), [csh](https://fr.wikipedia.org/wiki/C_shell), [ksh](https://fr.wikipedia.org/wiki/Korn_shell): plus anciens
+  * [sh](https://fr.wikipedia.org/wiki/Bourne_shell), [csh](https://fr.wikipedia.org/wiki/C_shell), [ksh](https://fr.wikipedia.org/wiki/Korn_shell) : plus anciens
   * [dash ou ash](https://en.wikipedia.org/wiki/Almquist_shell#dash) : Debian Almquist shell, utilisé à la place de sh sous Debian
-  * [bash](https://fr.wikipedia.org/wiki/Bourne-Again_shell#Usage): 
+  * [bash](https://fr.wikipedia.org/wiki/Bourne-Again_shell#Usage) :
     - fusion de l'ensemble des fonctionnalités présentes dans sh, csh, ksh, 
-    - présents sur la majorité des systèmes, 
+    - présent sur la majorité des systèmes, 
     - ajout de l'autocomplétion (touche `<TAB>`)
-  * [zsh](https://en.wikipedia.org/wiki/Z_shell): par défaut sous MacOS à partir de la version 10.15 (Catalina), étend les fonctionnalités de bash
+  * [zsh](https://en.wikipedia.org/wiki/Z_shell) : par défaut sous MacOS à partir de la version 10.15 (Catalina), étend les fonctionnalités de bash
   * 🐠 [fish](https://en.wikipedia.org/wiki/Friendly_interactive_shell)
   
 note: 
@@ -113,14 +115,15 @@ note:
   - `command --help`
   - `man command` (`man man` pour apprendre à utiliser man)
   - `man file.5` : Description du format des fichiers de configuration (exemple : `man passwd.5`)
-  - [tldr.sh](https://tldr.sh/): outil écrit en Node.js permettant de simplifier l'utilisation de man
+  - `help command`
+  - [tldr.sh](https://tldr.sh/) : outil écrit en Node.js permettant de simplifier l'utilisation de man
   - [explainshell](https://explainshell.com/) : outil en ligne permettant d'expliquer une commande shell
+  
 
 note: 
  Avant de commencer, j'aimerais vous rendre autonome sur la recherche d'informations. Généralement, votre système disposera de tous les outils vous permettant de comprendre une commande.
 
 ---
-
 
 ## Configuration
 
@@ -155,11 +158,11 @@ note:
 |  Pour une configuration globale | Pour une configuration utilisateur  |
 |---|---|
 | /etc/profile  |   ~/.profile |
-| /etc/bashrc.bashrc  |   **~/.bashrc** |
+| /etc/bashrc.bashrc  |   **~/.bashrc** * |
 | /etc/profile.d/*.sh  |   |
 
 ---
-### Les fichiers de configuration: `~/.profile`
+### Les fichiers de configuration : `~/.profile`
 
 Le `~/.profile` va charger le `~/.bashrc` :
 
@@ -181,12 +184,12 @@ fi
 # 1- Fermer et relancer votre terminal
 # 2- Utiliser le point
 . ~/.bashrc
-# 3- Utiliser source
+# 3- Utiliser la commande source
 source ~/.bashrc
 ```
 
 ---
-## Un peu de couleur
+## 🌈 Un peu de couleurs 🌈
 
 ---
 
@@ -230,7 +233,7 @@ ls est /bin/ls
 
 ---
 
-Utilisateur de `VI`, installer VIM pour avoir la coloration syntaxique:
+Utilisateur de `Vi`, installer Vim pour avoir la coloration syntaxique :
 
 ```
 $ apt install vim
@@ -321,7 +324,7 @@ note:
 
 ### Quelques commandes que vous devez connaître (2/2)
 
- - `tail -f fichier.log` : retourne en continue la fin d'un fichier
+ - `tail -f fichier.log` : retourne en continu la fin d'un fichier
  - `sed` : remplacer du contenu
  - `awk` : faire du traitement sur les fichiers
  - `sort` : pour trier
@@ -367,10 +370,10 @@ alias top_process="ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
 # Recherche dans le système de fichier
 $ locate fichier.json
 ``` 
-Dépend d'une base de données locale mis à jour chaque jour (via `updatedb`).
+Dépend d'une base de données locale mise à jour quotidiennement (via `updatedb`).
 
 ```
-/etc/cron.daily$ ls *loc*    
+/etc/cron.daily$ ls *loc*
 mlocate
 ```
 
@@ -379,11 +382,11 @@ mlocate
 ### Trouver un fichier : `find`
 
 ```shell script
-# Recherche tous les fichiers (`-f`) qui contiennent `my*` à partir du répertoire courant
+# Recherche tous les fichiers (`-f`) qui contiennent `my*`
+# à partir du répertoire courant
 $ find . -name 'my*' -type f
 
 # Ignorer les erreurs :
-
 $ find / -name 'my*' -type f 2>/dev/null
 
 # Exécuter une action : 
@@ -413,23 +416,23 @@ Fonctionne également sur d'autres commandes (`git`, `ssh`).
  
 Les fichiers de configuration de l'autocomplétion sont à placer dans /etc/bash_completion.d/.
 
-(possibilité d'ajouter des fichiers d'autocompletion custom)
+(possibilité d'ajouter des fichiers d'autocomplétion personnalisés)
 
 ---
 
-### Raccourcis claviers (1/2)
+### Raccourcis clavier (1/2)
 
   * `CTRL + u` : couper tout ce qui est à gauche
-  * `CTRL + w` : suppression du mot avant (couper)
-  * `CTRL + y` : coller ce qui a été coupé par `CTRL + w/u`
-  * `CTRL + e` : va a la fin    
-  * `CTRL + a` : va au début
-  * `CTRL + l` : clear
-  * `CTRL + d` : exit
+  * `CTRL + w` : supprimer le mot précédent (couper)
+  * `CTRL + y` : coller ce qui a été coupé par `CTRL + w` ou `CTRL + u`
+  * `CTRL + e` : aller à la fin
+  * `CTRL + a` : aller au début
+  * `CTRL + l` : effacer
+  * `CTRL + d` : quitter
 
 ---
 
-### Raccourcis claviers (2/2)
+### Raccourcis clavier (2/2)
 
 `man readline` pour une liste plus complète.
 
@@ -447,10 +450,10 @@ note:
 * Configuration possible : 
 
 ```
-# Ne pas stocker de doublons ou les commandes commençantpar un espace
+# Ne pas stocker de doublons ou les commandes commençant par un espace
 HISTCONTROL=ignoreboth # équivalent à : ignorespace;ignoredups
 
-# append to the history file, don't overwrite it
+# Ne pas écraser le fichier d'historique
 shopt -s histappend
 
 # Nombre de commandes à stocker dans l'historique
@@ -478,7 +481,9 @@ HISTSIZE=1000
 
 ### `history` : utilisation de `fzf`
 
-Possibilité d'améliorer l'affichage de `CTRL + r` avec [fzf](https://github.com/junegunn/fzf)
+Possibilité d'améliorer l'affichage de `CTRL + r` avec 
+
+[fzf](https://github.com/junegunn/fzf)
 
 ```
 $ sudo apt install fzf
@@ -489,7 +494,7 @@ $ sudo apt install fzf
 
 ---
 
-### Copier/Coller : sélection avec la souris
+### Copier/coller : sélection avec la souris
 
  `CTRL + SHIFT + c/v`
   
@@ -506,14 +511,14 @@ alias pbpaste='xclip -selection clipboard -o'
 
 Exemple :
 
-`$ otp arteext | pbcopy` : permet de copier/coller dans le presse papier le résultat de otp arteext.
+`$ otp arteext | pbcopy` : permet de copier/coller dans le presse-papier le résultat de otp arteext.
 
 ---
 ## Gestion des processus
 
- * `command &` : permet d'exécuter une commande en arrière plan
+ * `command &` : exécuter une commande en arrière plan
  * `CTRL + c` : tuer un processus
- * `CTRL + z` : stopper une application en arrière plan
+ * `CTRL + z` : mettre en pause une application
  * (`bg 1` pour activer la tâche en arrière plan, `fg 1` pour la remettre au premier plan)
 
 note: 
@@ -521,7 +526,7 @@ note:
 
 ---
 
-### Executer une tâche en tâche de fond (background) (1/2)
+### Exécuter une commande en tâche de fond (background) (1/2)
   
   * utilisation de `&`  (inconvénient : si la session est fermée - perte connexion SSH -, la commande s'arrête).
   
@@ -535,7 +540,7 @@ note:
 
 <!-- .slide: data-background-image="data/tmux-perso.png" -->
 
-### Executer une tâche en tâche de fond (background) (2/2)
+### Exécuter une commande en tâche de fond (background) (2/2)
   
 `tmux` ou `screen` (legacy)
     
@@ -547,18 +552,18 @@ https://github.com/tmux/tmux
 
  * multiplexeur de terminal (a.k.a des onglets dans le terminal)
  * évolution de [GNU Screen](https://www.gnu.org/software/screen/)
- * utilisation d'un préfixe (combinaison de touches - par défaut : CTRL+b) pour réaliser des actions.
- * persistence des sessions
+ * utilisation d'un préfixe (combinaison de touches - par défaut : CTRL+b) pour réaliser des actions
+ * persistance des sessions
  
 ---
 
 ### tmux : raccourcis
 
  * lister les sessions : `tmux ls`
- * se connecter à la sessions : `tmux at -t 0`
- * quitter tmux et laisser les sessions ouvertes: `CTRL+b + d` 
- * nouvelle session: `CTRL+b + :new title`
- * splitter les fenêtres : `CTRL+b + %` / `CTRL+b + "`
+ * se connecter à la session : `tmux at -t 0`
+ * quitter tmux et laisser les sessions ouvertes : `CTRL+b + d` 
+ * créer une nouvelle session : `CTRL+b + :new title`
+ * fractionner une fenêtre : `CTRL+b + %` / `CTRL+b + "`
  * lister les fenêtres : `CTRL+b + w`
  * renommer l'onglet (`window`) : `CTRL+b + ,`
  * renommer la fenêtre (`session`) : `CTRL+b $`
@@ -589,12 +594,12 @@ bind -n S-Right next-window
 
 ---
 
-### tmux : copier-coller
+### tmux : copier/coller
 
-* `CTRL+b [`: activation du visual mode
-* `v`: pour sélectionner le texte
-* `y`: pour copier la sélection
-* `CTRL+b P`: pour coller
+* `CTRL+b [` : activer le visual mode
+* `v` : sélectionner le texte
+* `y` : copier la sélection
+* `CTRL+b P` : pour coller
 
 ```
 set-window-option -g mode-keys vi
@@ -607,7 +612,7 @@ bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
 https://romainpellerin.eu/copy-pasting-in-tmux-and-vim.html
 ---
 
-### tmux : interaction avec vim
+### tmux : interaction avec Vim
 
 `sudo apt install vim-gnome`
 
@@ -643,10 +648,10 @@ note:
 
  * configuration :
    - système : `/etc/gitconfig` 
-   - global : `~/.gitconfig`
-   - par projet : `projet/.gitconfig` (surcharge configuration globale)
+   - globale : `~/.gitconfig`
+   - par projet : `projet/.gitconfig` (surcharge de la configuration globale)
 
- * Très bonne ressource: [Une configuration Git aux petits oignons - Delicious Insights](https://delicious-insights.com/fr/articles/configuration-git/)
+ * Très bonne ressource : [Une configuration Git aux petits oignons - Delicious Insights](https://delicious-insights.com/fr/articles/configuration-git/)
  
 note:
 La configuration de git se fait dans le fichier `.gitconfig`.
@@ -732,25 +737,25 @@ Possibilité de surcharger cette configuration :  <!-- .element style="text-alig
 
 ```shell script
 [push]
-# Utilise le même nom de branche local et distant
+# Utiliser le même nom de branche locale et distante
 # https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault
 default = current
 
 [pull]
-# Effectue un rebase lors du pull - équivalent à git pull --rebase
+# Effectuer un rebase lors du pull - équivalent à git pull --rebase
 # https://git-scm.com/docs/git-config#Documentation/git-config.txt-pullrebase
 rebase = preserve
 
 [rebase]
-# stash les modifications en cours avant d'effectuer le rebase
+# "Stasher" les modifications en cours avant d'effectuer le rebase
 autostash = true
 
 [tag]
-# Tri les tags dans un ordre naturel
+# Trier les tags dans un ordre naturel
 sort = version:refname
         
 [branch]
-# tri les branches par date de dernier commit
+# Trier les branches par date de dernier commit
 sort = committerdate
 ``` 
 
@@ -758,10 +763,10 @@ sort = committerdate
 ### hub
 
 https://hub.github.com/
- * outil de github permettant d'interagir avec github
- * lister les issues/pull-requests: `git pr list`
- * récupérer le contenu d'une PR: `git pr checkout 12`
- * créer des PR: `git pull-request --push`
+ * outil de GitHub permettant d'interagir avec des gestionnaires de sources (dont GitHub)
+ * lister les issues/pull-requests : `git pr list`
+ * récupérer le contenu d'une PR : `git pr checkout 12`
+ * créer des PR : `git pull-request --push`
  * créer des releases, ...
 
 ---
@@ -783,18 +788,20 @@ note:
 
 ```
 # générer votre clé SSH
+# 2 fichiers (clé publique et privée)
 $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 # utiliser une passphrase
 ``` 
 
-Uploader [la clé sur github](https://github.com/settings/keys)
+Uploader [la clé sur GitHub](https://github.com/settings/keys)
 
 ```
 $ ssh -T git@github.com
-Hi franek! You've successfully authenticated, but GitHub does not provide shell access.
+Hi franek! You've successfully authenticated, 
+but GitHub does not provide shell access.
 ```
 
-Aide: https://help.github.com/en/articles/connecting-to-github-with-ssh
+Aide : https://help.github.com/en/articles/connecting-to-github-with-ssh
 
 ---
 
@@ -808,12 +815,12 @@ Aide: https://help.github.com/en/articles/connecting-to-github-with-ssh
 
 ### SSH : ssh-copy-id
 
-Copier votre clé SSH sur un serveur distant:
+Copier votre clé SSH sur un serveur distant :
 
 `$ ssh-copy-id user@server`
 
 * va ajouter la clé SSH dans le fichier `./ssh/authorized_keys` du serveur distant
-* le mot de passe ne sera plus nécessaire pour accéder au serveur.
+* le mot de passe ne sera plus nécessaire pour accéder au serveur
 
 ---
 
@@ -836,7 +843,7 @@ User client1
 
 ### SSH : parallel-ssh
  
-Permet d'effectuer des tâches similaires sur plusieurs serveurs:
+Permet d'effectuer des tâches similaires sur plusieurs serveurs :
  
 ```
 $ sudo apt-get install pssh
@@ -866,7 +873,7 @@ Connexion automatique au serveur protégé via un rebond sur le bastion SSH.
 
 `$ ssh service1`  
 
-[Octo: Back to Basics : Le Bastion SSH](https://blog.octo.com/le-bastion-ssh/)
+[Octo - Back to Basics : Le Bastion SSH](https://blog.octo.com/le-bastion-ssh/)
 
 ---
 
@@ -876,7 +883,7 @@ Création d'un proxy SOCKS
 
 `ssh -nvNT -C -D 1080 user@mon_serveur_distant`
 
-Configurer votre navigateur pour utiliser ce proxy.
+Configurer votre navigateur pour utiliser ce proxy
 
 Autre solution : [sshutle](https://github.com/sshuttle/sshuttle)
 
@@ -889,12 +896,12 @@ $ sshuttle --dns -r user@serveur 0/0
 
 ### Dotfiles de la communauté
 
- * https://dotfiles.github.io/: communauté de fichiers de configurations (dotfiles)
- * [chezmoi](https://github.com/twpayne/chezmoi): outil permettant de gérer ses dotfiles
+ * https://dotfiles.github.io/ : communauté de fichiers de configuration (dotfiles)
+ * [chezmoi](https://github.com/twpayne/chezmoi) : outil permettant de gérer ses dotfiles
 
 ---
 
-### Autres outils chouettes
+### Autres outils chouettes 🦉
 
   * `python -m SimpleHTTPServer` : publier un site web rapidement  ([doc Mozilla](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server#Running_a_simple_local_HTTP_server))
   * `nmap` : pour lister les ports ouverts
@@ -906,7 +913,7 @@ $ sshuttle --dns -r user@serveur 0/0
 
 ## Aller plus loin
 
-<!-- .slide: data-background-image="data/the-art-of-command-line.png" style="background-color:black;padding:10px;" -->
+<!-- .slide: data-background-image="data/the-art-of-command-line.png" style="background-color:#333;padding:10px;" -->
  
 https://github.com/jlevy/the-art-of-command-line
 
@@ -935,3 +942,4 @@ https://github.com/jlevy/the-art-of-command-line
 ### Credits :
 
 * [Photo by Milind Kaduskar on Unsplash](https://unsplash.com/photos/pzKb6pAIL94)
+* [Photo by Dan Gold on Unsplash](https://unsplash.com/photos/8PBVWiZR2NM)
