@@ -71,6 +71,13 @@ https://github.com/chubin/wttr.in
 `$ youtube-dl url`
 
 https://github.com/ytdl-org/youtube-dl/
+
+--- 
+## Monitoring
+
+![Sampler](https://user-images.githubusercontent.com/6069066/56404396-70b14d00-6234-11e9-93cd-54461bf40c96.gif)
+
+https://github.com/sqshq/sampler
 ---
 
 ## Animation : fautes de frappe
@@ -756,6 +763,10 @@ https://hub.github.com/
  * récupérer le contenu d'une PR: `git pr checkout 12`
  * créer des PR: `git pull-request --push`
  * créer des releases, ...
+
+---
+
+![Lister les PR](data/hub-pr-list-symfony.png)
 
 ---
 ### git : clone en mode SSH (1/2)
