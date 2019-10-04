@@ -13,6 +13,13 @@ Je voulais au départ faire mes slides dans le terminal ([mdp](https://github.co
 <!-- .slide: data-background-image="data/dan-gold-8PBVWiZR2NM-unsplash.jpg" style="background-color: #333;" -->
 
  * Présentation axée autour de BASH pour Linux (ça fonctionnera peut-être sur d'autres OS/interpréteurs)
+```shell script
+# Pour savoir si vous utilisez bash
+$ echo $BASH
+/bin/bash
+# Pour démarrer bash dans un container docker
+$ docker run -it bash
+```
  * On ne parlera pas de Windows -- .bat -- (même si le terminal s'améliore)
  
 note: 
@@ -119,7 +126,6 @@ note:
   - [tldr.sh](https://tldr.sh/) : outil écrit en Node.js permettant de simplifier l'utilisation de man
   - [explainshell](https://explainshell.com/) : outil en ligne permettant d'expliquer une commande shell
   
-
 note: 
  Avant de commencer, j'aimerais vous rendre autonome sur la recherche d'informations. Généralement, votre système disposera de tous les outils vous permettant de comprendre une commande.
 
