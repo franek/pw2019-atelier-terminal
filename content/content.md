@@ -122,7 +122,7 @@ note:
   - `command --help`
   - `man command` (`man man` pour apprendre à utiliser man)
   - `man file.5` : Description du format des fichiers de configuration (exemple : `man passwd.5`)
-  - `help command`
+  - `help command` : De l'aide sur des commandes bash
   - [tldr.sh](https://tldr.sh/) : outil écrit en Node.js permettant de simplifier l'utilisation de man
   - [explainshell](https://explainshell.com/) : outil en ligne permettant d'expliquer une commande shell
   
@@ -195,7 +195,7 @@ source ~/.bashrc
 ```
 
 ---
-## 🌈 Un peu de couleurs 🌈
+## 🌈 Un peu de couleurs
 
 ---
 
@@ -472,13 +472,11 @@ HISTSIZE=1000
 `man history`
 
 ```
-!      Start a history substitution, except when followed by a blank, newline, = or (.
 !n     Refer to command line n.
 !-n    Refer to the current command minus n.
 !!     Refer to the previous command.  This is a synonym for `!-1'.
 !string Refer to the most recent command preceding the current position in the history list starting with string.
 !?string[?] Refer to the most recent command preceding the current position in the history list containing string.  The trailing ? may be omitted if string is followed immediately by a newline.
-^string1^string2^ Quick substitution.  Repeat the last command, replacing string1 with string2.  Equivalent to ``!!:s/string1/string2/'' (see Modifiers below).
 !#     The entire command line typed so far.
 
 ```
