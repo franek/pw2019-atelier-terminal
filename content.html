@@ -139,14 +139,13 @@ https://github.com/sqshq/sampler
 
 <aside class="notes"><p>Pas totalement vrai mais c&#39;est pour montrer la complexité du truc.</p>
 </aside></script></section><section  data-markdown><script type="text/template">
-|  Pour une configuration globale | Pour une configuration utilisateur  |
-|---|---|
-| /etc/profile  |   ~/.profile |
-| /etc/bashrc.bashrc  |   **~/.bashrc** * |
-| /etc/profile.d/*.sh  |   |
+| |  Configuration globale | Configuration utilisateur  |
+|---|---|---|
+| Si auth. (login)| /etc/profile  |   ~/.profile |
+| Dans la plupart des cas | /etc/bashrc.bashrc  |   ~/.bashrc |
 </script></section><section  data-markdown><script type="text/template">### Les fichiers de configuration : `~/.profile`
 
-Le `~/.profile` va charger le `~/.bashrc` :
+Recommendation:  `~/.profile` doit charger le `~/.bashrc` (permet de charger le `~/.bashrc` lorsque bash est démarré en mode "login").
 
 ```
 # ~/.bashrc
@@ -167,8 +166,7 @@ fi
 # 3- Utiliser la commande source
 source ~/.bashrc
 ```
-</script></section><section  data-markdown><script type="text/template">## 🌈 Un peu de couleurs 🌈
-</script></section><section  data-markdown><script type="text/template">
+</script></section><section  data-markdown><script type="text/template">## Un peu de couleurs 🌈</script></section><section  data-markdown><script type="text/template">
 Coloration syntaxique activée par défaut sur la plupart des systèmes
 
 ```
@@ -222,7 +220,7 @@ Activation de la coloration syntaxique
 syntax on
 ```</script></section><section  data-markdown><script type="text/template">### Configurer son prompt (1/3)
 
-`$PS1=u@\h:\w\$`
+`export PS1=\u@\h:\w\$`
 
 ```shell script
 user@machine:/path $ 
