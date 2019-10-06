@@ -161,16 +161,15 @@ note:
 
 ---
 
-|  Pour une configuration globale | Pour une configuration utilisateur  |
-|---|---|
-| /etc/profile  |   ~/.profile |
-| /etc/bashrc.bashrc  |   **~/.bashrc** * |
-| /etc/profile.d/*.sh  |   |
+| |  Configuration globale | Configuration utilisateur  |
+|---|---|---|
+| Si auth. (login)| /etc/profile  |   ~/.profile |
+| Dans la plupart des cas | /etc/bashrc.bashrc  |   ~/.bashrc |
 
 ---
 ### Les fichiers de configuration : `~/.profile`
 
-Le `~/.profile` va charger le `~/.bashrc` :
+Recommendation:  `~/.profile` doit charger le `~/.bashrc` (permet de charger le `~/.bashrc` lorsque bash est démarré en mode "login").
 
 ```
 # ~/.bashrc
@@ -195,8 +194,7 @@ source ~/.bashrc
 ```
 
 ---
-## 🌈 Un peu de couleurs
-
+## Un peu de couleurs 🌈
 ---
 
 Coloration syntaxique activée par défaut sur la plupart des systèmes
@@ -257,7 +255,7 @@ syntax on
 ---
 ### Configurer son prompt (1/3)
 
-`$PS1=u@\h:\w\$`
+`export PS1=\u@\h:\w\$`
 
 ```shell script
 user@machine:/path $ 
