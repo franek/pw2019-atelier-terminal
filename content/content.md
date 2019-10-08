@@ -265,6 +265,8 @@ Convention du suffixe :
  - `$` utilisateur classique
  - `#` utilisateur root (super-utilisateur) 
 
+[$PS1 Generator](http://bashrcgenerator.com/)
+
 ---
 
 ### Configurer son prompt (2/3)
