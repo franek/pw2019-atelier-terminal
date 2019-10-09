@@ -307,6 +307,7 @@ Source : https://delicious-insights.com/fr/articles/prompt-git-qui-dechire/
 
 ### Configuration simplifiée
 
+ * Oh My Git : https://github.com/arialdomartini/oh-my-git
  * Oh My Bash : https://ohmybash.github.io/
  * Oh My Zsh: https://ohmyz.sh/
  * Bash-it : https://github.com/Bash-it/bash-it
@@ -555,9 +556,9 @@ note:
 https://github.com/tmux/tmux
 
  * multiplexeur de terminal (a.k.a des onglets dans le terminal)
+ * persistance des sessions
  * évolution de [GNU Screen](https://www.gnu.org/software/screen/)
  * utilisation d'un préfixe (combinaison de touches - par défaut : CTRL+b) pour réaliser des actions
- * persistance des sessions
  
 ---
 
@@ -838,7 +839,11 @@ Port 2223
 User client1
 ```
 
-`$ ssh projet1`
+```
+$ ssh projet1
+# équivalent à 
+# $ ssh client1@W.X.Y.Z -p 2223
+```
 
 * Simplification de la configuration
 * Permet l'autocomplétion (`ssh pro\<TAB\>`) 
