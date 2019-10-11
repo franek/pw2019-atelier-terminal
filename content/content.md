@@ -18,7 +18,7 @@ Je voulais au départ faire mes slides dans le terminal ([mdp](https://github.co
 $ echo $BASH
 /bin/bash
 # Pour démarrer bash dans un container docker
-$ docker run -it bash
+$ docker run --rm -it bash
 ```
  * On ne parlera pas de Windows -- .bat -- (même si le terminal s'améliore)
  
