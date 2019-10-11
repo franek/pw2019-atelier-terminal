@@ -888,7 +888,7 @@ Connexion automatique au serveur protégé via un rebond sur le bastion SSH.
 
 ### SSH : tunnel SSH avec redirection de port
 
-Création d'un proxy SOCKS
+Création d'un [proxy SOCKS](https://ma.ttias.be/socks-proxy-linux-ssh-bypass-content-filters/).
 
 `ssh -nvNT -C -D 1080 user@mon_serveur_distant`
 
@@ -938,6 +938,8 @@ https://github.com/jlevy/the-art-of-command-line
 ---
 
 ## Merci
+
+https://pw2019-atelier-terminal.dume.me/
 
 ---
 
