@@ -13,3 +13,6 @@ start: ### Start server in watch mode
 build-static: ### Generate static slides
 	rm -rf _assets css data js lib plugin content.html index.html
 	$(BASE_COMMAND) --static . --static-dirs content/data
+
+export-pdf: ### Export PDF
+	$(BASE_COMMAND) --print slides.pdf

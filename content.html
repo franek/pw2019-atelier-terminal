@@ -229,6 +229,8 @@ user@machine:/path $
 Convention du suffixe :
  - `$` utilisateur classique
  - `#` utilisateur root (super-utilisateur) 
+
+[$PS1 Generator](http://bashrcgenerator.com/)
 </script></section><section  data-markdown><script type="text/template">
 ### Configurer son prompt (2/3)
  
@@ -264,6 +266,7 @@ Source : https://delicious-insights.com/fr/articles/prompt-git-qui-dechire/
 </script></section><section  data-markdown><script type="text/template">
 ### Configuration simplifiée
 
+ * Oh My Git : https://github.com/arialdomartini/oh-my-git
  * Oh My Bash : https://ohmybash.github.io/
  * Oh My Zsh: https://ohmyz.sh/
  * Bash-it : https://github.com/Bash-it/bash-it
@@ -477,9 +480,9 @@ Exemple :
 https://github.com/tmux/tmux
 
  * multiplexeur de terminal (a.k.a des onglets dans le terminal)
+ * persistance des sessions
  * évolution de [GNU Screen](https://www.gnu.org/software/screen/)
  * utilisation d'un préfixe (combinaison de touches - par défaut : CTRL+b) pour réaliser des actions
- * persistance des sessions
  </script></section><section  data-markdown><script type="text/template">
 ### tmux : raccourcis
 
@@ -721,7 +724,11 @@ Port 2223
 User client1
 ```
 
-`$ ssh projet1`
+```
+$ ssh projet1
+# équivalent à 
+# $ ssh client1@W.X.Y.Z -p 2223
+```
 
 * Simplification de la configuration
 * Permet l'autocomplétion (`ssh pro\<TAB\>`) 
@@ -758,7 +765,7 @@ Connexion automatique au serveur protégé via un rebond sur le bastion SSH.
 </script></section><section  data-markdown><script type="text/template">
 ### SSH : tunnel SSH avec redirection de port
 
-Création d'un proxy SOCKS
+Création d'un [proxy SOCKS](https://ma.ttias.be/socks-proxy-linux-ssh-bypass-content-filters/).
 
 `ssh -nvNT -C -D 1080 user@mon_serveur_distant`
 
@@ -798,6 +805,8 @@ https://github.com/jlevy/the-art-of-command-line
  * team #velotaf #cargo
  * mes dotfiles : https://github.com/franek/dotfiles</script></section><section  data-markdown><script type="text/template">
 ## Merci
+
+https://pw2019-atelier-terminal.dume.me/
 </script></section><section  data-markdown><script type="text/template">
 ### Autres ressources
 
