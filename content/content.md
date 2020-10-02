@@ -6,6 +6,7 @@ Bonjour, je m'appelle François Dume. Je vais animer aujourd'hui cet atelier dé
 Mon objectif est de vous donner envie d'utiliser votre terminal et démystifier certains outils.
 Cet atelier est accessible à des débutants. Je pensais au départ présenter des outils pour un public intermédiaire mais en discutant avec certain d'entre vous. On m'a conseillé de faire un truc accessible. 
 Nous commencerons par des choses simples. Nous verrons sur la fin des choses un peu plus complexes.
+
 Je voulais au départ faire mes slides dans le terminal ([mdp](https://github.com/visit1985/mdp) est chouette) mais je me suis rabattu sur reveal.js.
 
 ---
